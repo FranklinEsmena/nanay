@@ -152,7 +152,9 @@ with st.container(key="controls"):
     # centered full logo WITH the tagline, plus a little space below it
     # (a plain image from static/, because st.image always sits on the left)
     st.markdown("<div style='text-align:center;margin-bottom:0.6rem'>"
-                "<img src='/app/static/nanay_logo_full.svg' width='120' alt='NANAY logo'></div>",
+                # relative link (no leading "/"): online, Streamlit Cloud serves the app under an
+                # extra path, so "/app/static/..." would point outside the app there
+                "<img src='app/static/nanay_logo_full.svg' width='120' alt='NANAY logo'></div>",
                 unsafe_allow_html=True)
 
     # Every control has a key, so app.py can keep its value when you switch pages.

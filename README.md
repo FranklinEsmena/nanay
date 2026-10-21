@@ -12,7 +12,7 @@ It has two pages, for two kinds of health workers:
 | **Planning dashboard** | Provincial and city health offices | Which barangays are far from care, how rain changes that, which facility has no backup, and where an upgrade would help most |
 | **Birth-plan sheets** | Midwives and barangay health workers | A printable one-page sheet per barangay: nearest facility for each level of care, its phone number, dry and rainy travel times (one barangay, or a whole town as one PDF) |
 
-**Live app:** _add the Streamlit Community Cloud link here after deployment_
+**Live app:** https://nanay-neg-or.streamlit.app
 
 Mothers are the people who benefit; they receive the information through the midwife's sheet.
 All results describe **areas, not individual women**, and are decision support, not clinical guidance.
