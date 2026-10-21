@@ -38,14 +38,14 @@ st.html(f"""
   .st-key-controls {{
     background: #ffffff; border-radius: 16px;
     box-shadow: 0 4px 18px rgba(30, 43, 43, 0.12); padding: 0.15rem 1.1rem 0.6rem;
-    gap: 0.22rem !important;   /* tighter spacing so the whole panel fits on a laptop screen */
+    gap: 0.16rem !important;   /* tighter spacing so the whole panel fits on a laptop screen */
   }}
   .st-key-controls p {{ margin-bottom: 0; }}
   /* section headings ("What to measure", "Where to look"): Streamlit pulls every text block up 1rem,
      which made a heading overlap the label under it; pull these two up less */
   .st-key-controls [data-testid="stMarkdownContainer"]:has(.brand-heading) {{ margin-bottom: -0.3rem; }}
   /* a slightly shorter upgrade button, so the whole panel fits on a laptop screen */
-  .st-key-main_action_suggest button {{ min-height: 2.15rem; padding-top: 0.2rem; padding-bottom: 0.2rem; }}
+  .st-key-main_action_suggest button {{ min-height: 2rem; padding-top: 0.2rem; padding-bottom: 0.2rem; }}
   /* small grey text: a little bigger and darker so it reads well on projectors and in the video */
   [data-testid="stCaptionContainer"] {{ font-size: 0.88rem; color: #3d4d4d; }}
   /* less empty space above the title, so the map starts higher */
@@ -53,7 +53,7 @@ st.html(f"""
   @media (min-width: 992px) {{
     .st-key-controls {{
       position: fixed; top: 4.2rem; left: 1rem; z-index: 999;
-      width: {PANEL_WIDTH}px; max-height: calc(100vh - 4.5rem); overflow-y: auto;
+      width: {PANEL_WIDTH}px; max-height: calc(100vh - 4.3rem); overflow-y: auto;
     }}
     [data-testid="stMainBlockContainer"] {{ padding-left: calc({PANEL_WIDTH}px + 2.5rem); }}
   }}
@@ -156,7 +156,7 @@ def clear_upgrades():
 with st.container(key="controls"):
     # centered full logo WITH the tagline, plus a little space below it
     # (a plain image from static/, because st.image always sits on the left)
-    st.markdown("<div style='text-align:center;margin-bottom:0.45rem'>"
+    st.markdown("<div style='text-align:center;padding-top:0.45rem;margin-bottom:0.95rem'>"
                 # relative link (no leading "/"): online, Streamlit Cloud serves the app under an
                 # extra path, so "/app/static/..." would point outside the app there
                 "<img src='app/static/nanay_logo_full.svg' width='168' alt='NANAY logo'></div>",
