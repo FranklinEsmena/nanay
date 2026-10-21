@@ -60,8 +60,47 @@ for k in KEEP:
     if k in st.session_state:
         st.session_state[k] = st.session_state[k]
 
+# ---------------------------------------------------------------
+# Loading screen, first visit only: the logo, a sliding bar and the app title on the
+# sunrise background, covering everything while the dashboard is being drawn.
+# It fades out 0.3 s after the page has finished (the "nanay-ready" marker at the very
+# end of this file), so it is always on screen for at least about 0.8 s.
+# Streamlit's own blank screen still shows for the first moment, before this file runs.
+# ---------------------------------------------------------------
+if not st.session_state.get("splash_shown"):
+    st.session_state["splash_shown"] = True
+    st.html("""
+<style>
+  .nanay-splash {
+    position: fixed; inset: 0; z-index: 2000000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    background: linear-gradient(180deg, #fde0cf 0%, #fdeeec 22%, #ffffff 50%, #e6f4f3 78%, #c9ebe9 100%);
+  }
+  .nanay-splash img { width: min(300px, 60vw); }
+  .nanay-splash .bar { position: relative; width: 220px; height: 4px; border-radius: 2px;
+                       background: rgba(4, 120, 120, 0.15); overflow: hidden; }
+  .nanay-splash .bar span { position: absolute; left: -40%; width: 40%; height: 100%; border-radius: 2px;
+                            background: #047878; animation: nanay-slide 1.1s ease-in-out infinite; }
+  .nanay-splash .title { font-size: 14px; font-weight: 500; color: #3d4d4d; }
+  @keyframes nanay-slide { from { left: -40%; } to { left: 100%; } }
+  /* the page is ready: fade the loading screen away */
+  .stApp:has(.nanay-ready) .nanay-splash { animation: nanay-out 0.5s ease 0.3s forwards; }
+  @keyframes nanay-out { to { opacity: 0; visibility: hidden; } }
+  /* people who turn off animations on their computer: a still bar */
+  @media (prefers-reduced-motion: reduce) { .nanay-splash .bar span { animation: none; left: 30%; } }
+</style>
+<div class="nanay-splash">
+  <img src="app/static/nanay_logo_full.svg" alt="NANAY logo">
+  <div class="bar"><span></span></div>
+  <div class="title">Travel time to childbirth care · Negros Oriental</div>
+</div>
+""")
+
 pages = [
     st.Page("app_pages/dashboard.py", title="Planning dashboard", icon=":material/map:", default=True),
     st.Page("app_pages/birth_plan.py", title="Birth-plan sheets", icon=":material/description:"),
 ]
 st.navigation(pages, position="top").run()
+
+# The page has finished drawing: this marker tells the loading screen to fade out (style above)
+st.html("<span class='nanay-ready'></span>")
