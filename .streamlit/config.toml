@@ -1,0 +1,24 @@
+# Streamlit theme: colors taken from the NANAY logo (assets/nanay_logo.svg).
+# Logo colors: teal #28acab, salmon pink #f59a94, orange #f06b3a, green #388e3c,
+# background #f9fafa.
+# Buttons and sliders use a DARKER teal than the logo, so white button text
+# stays readable (contrast 5.3 : 1; the web guideline is at least 4.5 : 1).
+
+[client]
+# "viewer" hides Streamlit's developer buttons (Deploy, rerun settings) from users
+toolbarMode = "viewer"
+
+[server]
+# Serve files in the static/ folder at app/static/... (used for the panel logo,
+# so the browser can cache it instead of receiving it on every redraw)
+enableStaticServing = true
+
+[theme]
+base = "light"
+primaryColor = "#047878"              # deep teal: buttons, slider, selected tab
+backgroundColor = "#f9fafa"           # same off-white as the logo background
+secondaryBackgroundColor = "#e8f4f4"  # very light teal: input boxes, cards
+textColor = "#1e2b2b"                 # near-black with a hint of teal
+
+# The page background fade, orange buttons and pink finding box are set in app.py
+# (one CSS block shared by both pages).

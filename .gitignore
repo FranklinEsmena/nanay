@@ -1,0 +1,47 @@
+# NOTE: git does not allow a comment at the end of a pattern line,
+# so every comment here is on its own line.
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Local tool settings (not part of NANAY)
+.claude/
+
+# FAKE demo data: never commit (and delete before submission)
+data/demo/
+
+# Generated files that are quick to re-create with scripts 04-05
+outputs/
+
+# data/processed/ IS committed on purpose (about 35 MB): it holds the finished road network,
+# barangays and travel times, so the app runs without the big downloads below.
+# Only its helper files are left out (the app does not read them):
+data/processed/nominatim_cache.json
+data/processed/barangay_snap.csv
+
+# OpenStreetMap download cache made by osmnx (script 02)
+cache/
+
+# Large downloads: the README says where to get them
+data/raw/*.shp
+data/raw/*.shx
+data/raw/*.dbf
+data/raw/*.prj
+data/raw/*.cpg
+data/raw/*.zip
+data/raw/*.tif
+# 344 MB national boundary file (script 03a cuts out the small Negros Oriental part)
+data/raw/hdx_boundaries/*.zip
+# 600 MB Philippines map file + 51 MB in-between road file (script 02b)
+data/raw/geofabrik/
+
+# Editors / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Notes for the AI coding assistant used while building (kept locally, not part of the project)
+CLAUDE.md
