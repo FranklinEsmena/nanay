@@ -8,8 +8,8 @@ shapely==2.2.0
 pyproj==3.8.0
 pandas==3.0.5
 numpy==2.5.3
+# not imported by our code, but osmnx uses it to find the nearest road point (routes, script 04)
 scikit-learn==1.9.1
-matplotlib==3.11.2
 PuLP==3.3.2
 streamlit==1.66.0
 folium==0.20.0
